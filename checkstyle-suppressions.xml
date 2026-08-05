@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.0//EN" "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+    <suppress checks="MethodCount" files="src[\\/]test[\\/]java[\\/].*.java"/>
+    <suppress checks="FileLength" files="src[\\/]test[\\/]java[\\/].*.java"/>
+    <suppress checks="ExecutableStatementCount" files="src[\\/]test[\\/]java[\\/].*.java"/>
+    <suppress checks="JavadocMethod" files="src[\\/]test[\\/]java[\\/].*.java"/>
+    <suppress checks="MagicNumber" files="src[\\/]test[\\/]java[\\/].*.java"/>
+    <suppress checks="MatchXpath" files="src[\\/]test[\\/]java[\\/].*.java"/>
+    <suppress checks="LineLength" files="src[\\/]test[\\/]java[\\/].*.java"/>
+    <suppress checks="AvoidStaticImport" files="src[\\/]test[\\/]java[\\/].*.java"/>
+    <suppress checks="InterfaceIsType" files="src[\\/]test[\\/]java[\\/].*.java"/>
+    <suppress checks="LambdaBodyLength" files="src[\\/]test[\\/]java[\\/].*.java"/>
+</suppressions>
