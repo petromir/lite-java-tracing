@@ -9,10 +9,6 @@ This library covers exactly this need
 
 ## Features
 
-- **Null-safe operations** – All methods handle `null` inputs gracefully without throwing exceptions.
-- **Empty checks** – Check whether a character sequence is empty or not.
-- **Blank checks** – Determine if a string contains only whitespace characters.
-- **Capitalization** – Convert the first character of a string to uppercase while preserving the rest.
 
 ## Requirements
 
@@ -25,36 +21,13 @@ Java 25
 <dependencies>
     <dependency>
         <groupId>com.petromirdzhunev.libs</groupId>
-        <artifactId>strings</artifactId>
+        <artifactId>simple-tracing</artifactId>
     </dependency>
 </dependencies>
 ```
 
 ### Code
 ```java
-import com.petromirdzhunev.strings.Strings;
-
-public class Example {
-    public static void main(String[] args) {
-        // Empty checks
-        Strings.isEmpty(null);        // true
-        Strings.isEmpty("");          // true
-        Strings.isEmpty("hello");     // false
-        Strings.isNotEmpty("hello");  // true
-
-        // Blank checks
-        Strings.isBlank(null);        // true
-        Strings.isBlank("");          // true
-        Strings.isBlank("   ");       // true
-        Strings.isBlank("hello");     // false
-
-        // Capitalization
-        Strings.capitalize("hello");  // "Hello"
-        Strings.capitalize("Hello");  // "Hello"
-        Strings.capitalize(null);     // null
-	    Strings.capitalize("éhello");  // Éhello
-    }
-}
 ```
 
 ## Development
@@ -78,7 +51,7 @@ Change the version by adding a `-SNAPSHOT` suffix in the [pom.xml](pom.xml) file
 <dependencies>
     <dependency>
         <groupId>com.petromirdzhunev.lib</groupId>
-        <artifactId>strings</artifactId>
+        <artifactId>simple-tracing</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </dependency>
 </dependencies>
