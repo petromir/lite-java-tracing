@@ -1,14 +1,26 @@
-# Strings
+# Lite Java Tracing
 
-There are case when a very simple "tracing" is needed, i.e. having just a `Correlation-ID` in the log messages, 
+There are cases when a very lite "tracing" is needed, i.e. having just a `Correlation-ID` in the log messages, 
 by the support of Mapped Diagnostic Context (MDC)
-This library covers exactly this need
+This library covers exactly this need.
 
 > [!WARNING]
 > Under active development 🚧
 
 ## Features
 
+- Per-thread `Correlation-ID` context (`LiteTracingContext`)
+- `LiteTracedRunnable` propagating the context to another thread
+- `LiteTracedThreadFactory` wrapping tasks in `LiteTracedRunnable`, with support for platform and virtual threads
+- `new LiteTracedExecutorService(...)` for per-task propagation on pooled executors
+
+### Choosing the right mechanism
+
+| Scenario                                    | Use                                       |
+|---------------------------------------------|-------------------------------------------|
+| Virtual threads / thread-per-task           | `LiteTracedThreadFactory.ofVirtual()`     |
+| Pooled executor, varying submitter contexts | `new LiteTracedExecutorService(executor)` |
+| Single manual thread                        | `LiteTracedRunnable`                      |
 
 ## Requirements
 
@@ -21,13 +33,23 @@ Java 25
 <dependencies>
     <dependency>
         <groupId>com.petromirdzhunev.libs</groupId>
-        <artifactId>simple-tracing</artifactId>
+        <artifactId>lite-tracing</artifactId>
     </dependency>
 </dependencies>
 ```
 
 ### Code
 ```java
+LiteTracingContext.set("correlation-id-123");
+
+// Virtual threads
+ExecutorService executor = Executors.newThreadPerTaskExecutor(LiteTracedThreadFactory.ofVirtual());
+
+// Platform threads
+ExecutorService pool = Executors.newCachedThreadPool(LiteTracedThreadFactory.ofPlatform());
+
+// Pooled executor with per-task propagation (id captured at submission time)
+ExecutorService traced = new LiteTracedExecutorService(Executors.newCachedThreadPool());
 ```
 
 ## Development
@@ -51,7 +73,7 @@ Change the version by adding a `-SNAPSHOT` suffix in the [pom.xml](pom.xml) file
 <dependencies>
     <dependency>
         <groupId>com.petromirdzhunev.lib</groupId>
-        <artifactId>simple-tracing</artifactId>
+        <artifactId>lite-tracing</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </dependency>
 </dependencies>
